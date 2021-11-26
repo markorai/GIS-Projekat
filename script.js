@@ -1,4 +1,4 @@
-//javascript.js
+
 //set map options
 var myLatLng = { lat: 42.4338, lng: 18.6912 };
 var mapOptions = {
@@ -28,7 +28,7 @@ function calcRoute() {
         origin: document.getElementById("from").value,
         destination: document.getElementById("to").value,
         travelMode: google.maps.TravelMode.DRIVING, 
-        unitSystem: google.maps.UnitSystem.IMPERIAL
+        unitSystem: google.maps.UnitSystem.METRIC
     }
     console.log(request.travelMode);
 
@@ -36,7 +36,8 @@ function calcRoute() {
     directionsService.route(request, function (result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
 
-            //Get distance and time
+            //Get distance and time 
+            // 1 mile = 1.60 km
             const output = document.querySelector('#output');
             output.innerHTML = "<div class='alert-info'>Od: " + document.getElementById("from").value + ".<br />Do: " + document.getElementById("to").value + ".<br /> Udaljenost automobilom <i class='fas fa-road'></i> : " + result.routes[0].legs[0].distance.text + ".<br />Vrijeme trajanja vožnje: <i class='fas fa-hourglass-start'></i> : " + result.routes[0].legs[0].duration.text + ".</div>";
 
